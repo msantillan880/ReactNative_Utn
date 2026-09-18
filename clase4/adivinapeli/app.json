@@ -1,0 +1,18 @@
+{
+  "expo": {
+    "name": "Adivina La Película",
+    "slug": "adivina-la-pelicula",
+    "version": "1.0.0",
+    "orientation": "default",
+    "userInterfaceStyle": "light",
+    "android": {
+      "package": "com.ejemplo.adivinalapelicula"
+    },
+    "ios": {
+      "bundleIdentifier": "com.ejemplo.adivinalapelicula"
+    },
+    "plugins": [
+      "expo-status-bar"
+    ]
+  }
+}
