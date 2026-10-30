@@ -1,98 +1,87 @@
-import * as Device from 'expo-device';
-import { Platform, StyleSheet } from 'react-native';
-import { SafeAreaView } from 'react-native-safe-area-context';
-
-import { AnimatedIcon } from '@/components/animated-icon';
-import { HintRow } from '@/components/hint-row';
-import { ThemedText } from '@/components/themed-text';
-import { ThemedView } from '@/components/themed-view';
-import { WebBadge } from '@/components/web-badge';
-import { BottomTabInset, MaxContentWidth, Spacing } from '@/constants/theme';
-
-function getDevMenuHint() {
-  if (Platform.OS === 'web') {
-    return <ThemedText type="small">use browser devtools</ThemedText>;
-  }
-  if (Device.isDevice) {
-    return (
-      <ThemedText type="small">
-        shake device or press <ThemedText type="code">m</ThemedText> in terminal
-      </ThemedText>
-    );
-  }
-  const shortcut = Platform.OS === 'android' ? 'cmd+m (or ctrl+m)' : 'cmd+d';
-  return (
-    <ThemedText type="small">
-      press <ThemedText type="code">{shortcut}</ThemedText>
-    </ThemedText>
-  );
-}
+import { router } from 'expo-router';
+import { StyleSheet, View } from 'react-native';
+import { Button, Text, useTheme } from 'react-native-paper';
+import { useAccessibility } from '../contexts/AccessibilityContext';
 
 export default function HomeScreen() {
+  const theme = useTheme();
+  const { fontScale } = useAccessibility();
+
   return (
-    <ThemedView style={styles.container}>
-      <SafeAreaView style={styles.safeArea}>
-        <ThemedView style={styles.heroSection}>
-          <AnimatedIcon />
-          <ThemedText type="title" style={styles.title}>
-            Welcome to&nbsp;Expo
-          </ThemedText>
-        </ThemedView>
+    <View style={[styles.container, { backgroundColor: theme.colors.background }]}>
+      <View style={styles.contentWrap}>
+        <Text
+          variant="headlineMedium"
+          style={{
+            color: theme.colors.onBackground,
+            fontSize: 28 * fontScale,
+            fontWeight: '700',
+            textAlign: 'center',
+          }}
+        >
+          MePerdí
+        </Text>
 
-        <ThemedText type="code" style={styles.code}>
-          get started
-        </ThemedText>
+        <Text
+          style={{
+            color: theme.colors.onBackground,
+            fontSize: 16 * fontScale,
+            textAlign: 'center',
+            lineHeight: 24 * fontScale,
+          }}
+        >
+          Botón de ayuda, al presionarlo se enviará un mensaje a tus contactos de confianza con tu ubicación, ellos te van ayudar a regresar.
+        </Text>
 
-        <ThemedView type="backgroundElement" style={styles.stepContainer}>
-          <HintRow
-            title="Try editing"
-            hint={<ThemedText type="code">src/app/index.tsx</ThemedText>}
-          />
-          <HintRow title="Dev tools" hint={getDevMenuHint()} />
-          <HintRow
-            title="Fresh start"
-            hint={<ThemedText type="code">npm run reset-project</ThemedText>}
-          />
-        </ThemedView>
+        <Button
+          mode="contained"
+          icon="lifebuoy"
+          onPress={() => router.push('/enviarmsj')}
+          style={[styles.helpButton, { alignSelf: 'center' }]}
+          labelStyle={{ fontSize: 20 * fontScale, fontWeight: '700' }}
+          accessibilityLabel="Pedir ayuda"
+        >
+          Pedir ayuda
+        </Button>
 
-        {Platform.OS === 'web' && <WebBadge />}
-      </SafeAreaView>
-    </ThemedView>
+        <Button
+          mode="outlined"
+          icon="information-outline"
+          onPress={() => router.push('/explicacion')}
+          style={[styles.secondaryButton, { alignSelf: 'center' }]}
+          accessibilityLabel="Ir a la pantalla de explicación"
+        >
+          Ver explicación
+        </Button>
+      </View>
+    </View>
   );
 }
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    justifyContent: 'center',
-    flexDirection: 'row',
-  },
-  safeArea: {
-    flex: 1,
-    paddingHorizontal: Spacing.four,
+    paddingHorizontal: 24,
+    justifyContent: 'flex-start',
     alignItems: 'center',
-    gap: Spacing.three,
-    paddingBottom: BottomTabInset + Spacing.three,
-    maxWidth: MaxContentWidth,
   },
-  heroSection: {
+  contentWrap: {
+    width: '100%',
+    maxWidth: 420,
     alignItems: 'center',
     justifyContent: 'center',
-    flex: 1,
-    paddingHorizontal: Spacing.four,
-    gap: Spacing.four,
+    gap: 16,
   },
-  title: {
-    textAlign: 'center',
+  helpButton: {
+    minHeight: 56,
+    justifyContent: 'center',
+    width: '100%',
+    maxWidth: 320,
   },
-  code: {
-    textTransform: 'uppercase',
-  },
-  stepContainer: {
-    gap: Spacing.three,
-    alignSelf: 'stretch',
-    paddingHorizontal: Spacing.three,
-    paddingVertical: Spacing.four,
-    borderRadius: Spacing.four,
+  secondaryButton: {
+    minHeight: 52,
+    justifyContent: 'center',
+    width: '100%',
+    maxWidth: 320,
   },
 });

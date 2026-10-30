@@ -1,18 +1,39 @@
-import { DarkTheme, DefaultTheme, ThemeProvider } from 'expo-router';
-import * as SplashScreen from 'expo-splash-screen';
-import { useColorScheme } from 'react-native';
+import { Stack } from 'expo-router';
+import { useTheme } from 'react-native-paper';
+import { SafeAreaView } from 'react-native-safe-area-context';
 
-import { AnimatedSplashOverlay } from '@/components/animated-icon';
-import AppTabs from '@/components/app-tabs';
+import { AccessibilityToolbar } from '../components/AccessibilityToolbar';
+import { AppTheme } from '../components/AppTheme';
+import { AccessibilityProvider } from '../contexts/AccessibilityContext';
 
-SplashScreen.preventAutoHideAsync();
+function RootNavigator() {
+  const theme = useTheme();
 
-export default function TabLayout() {
-  const colorScheme = useColorScheme();
   return (
-    <ThemeProvider value={colorScheme === 'dark' ? DarkTheme : DefaultTheme}>
-      <AnimatedSplashOverlay />
-      <AppTabs />
-    </ThemeProvider>
+    <SafeAreaView style={{ flex: 1, backgroundColor: theme.colors.background }}>
+      <AccessibilityToolbar />
+      <Stack
+        screenOptions={{
+          headerStyle: { backgroundColor: theme.colors.surface },
+          headerTintColor: theme.colors.onSurface,
+          contentStyle: { backgroundColor: theme.colors.background },
+        }}
+      >
+        <Stack.Screen name="index" options={{ title: '' }} />
+        {/* <Stack.Screen name="index" options={{ title: 'MePerdí' }} /> */}
+        <Stack.Screen name="enviarmsj" options={{ title: 'Volver' }} />
+        <Stack.Screen name="explicacion" options={{ title: 'Volver' }} />
+      </Stack>
+    </SafeAreaView>
+  );
+}
+
+export default function Layout() {
+  return (
+    <AccessibilityProvider>
+      <AppTheme>
+        <RootNavigator />
+      </AppTheme>
+    </AccessibilityProvider>
   );
 }

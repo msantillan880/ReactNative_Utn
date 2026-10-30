@@ -1,4 +1,50 @@
-# Welcome to your Expo app 👋
+# React Native Expo app para las actividades 3 5 y 6👋
+
+ACLARACION: Tuve que utilizar la sdk 58, debido a que en mi movile expo go solo acepto esa versión. Si bien el profe aclaro que usemos la v54, veo que la actualización es medio automática.
+
+## Idea de la aplicación
+
+Continuando con la idea de una aplicación de ayuda a una persona de la tercera edad, en esta ocasión utilizo como temática el hipotético caso de una persona perdida, o con inconvenientes de orientación. También se podria aplicar a niños u otros grupos. Asimismo como voy a explicar más adelante también podría servir para ubicar personas.
+
+## Modo de uso
+
+Cuando alguien se siente perdido fuera de su hogar, presiona el botón "Pedir ayuda", por medio de la geolocalización se buscan las coordenadas,y precisión de la ubicación, y se arma un mensaje con estos datos y url de google map para abrir un mapa, el cual se pude enviar por medio de un sms a un contacto de confianza.
+Como tema la aplicación tiene una vista normal o se cambia por medio de un botón a altocontraste, también es posible aumentar o disminuir el tamaño de la fuente para una mejor visualización.
+
+# Inconvenientes presentados
+
+- solo pude probarlo con la aplicación de mensajería para enviar el sms. Si bien se muestra también la aplicación de Whatasapp no puede ver como aplicarlo.
+- la versión de la sdk, solo pude usar la 58.
+
+## Actividades Incluidas
+
+En esta aplicación intento resumir las propuestas de las tres últimas actividades 3, 5 y 6 (no había una 4), perdón por no presentarlo por separado.
+
+- Actividad 3 (Implementación de APIS): Mediante un post se envía un request, dado que se trata de una simulación para que quede registro provisoriamente se muestra un mensaje en pantalla con la invocación. Más adelante la voy a retirar cuando se avance con el desarrollo del proyecto.
+
+- Actividad 5 (Paleta de Marca Personalizada):Como tema desarrollado, opte por vista normal, y alto contraste. El alto contraste considerando una persona con problemas visuales, asimismo considerando ese último inconveniente incluí la posibilidad de poder incrementar o disminuir la fuente para una mejor lectura.
+
+- Actividad 6 (Manipulación Nativa): Utilizo el gps para idenficar las coordenadas de localización de la persona, y luego se enviara un mensaje a un contacto con la ubicación en un mapa.
+
+## Relación de esta presentación con el trabajo Final
+
+Mi idea es seguir desarrollando la idea de esta aplicación con los nuevos temas que se van viendo en el curso por ejemplo
+Dado que se va pedir un crud, podría aplicarlo en un abm de contactos de confianza, con nro de telefono, nombre, relación, tal vez un orden de prioridad en el pedido de ayuda.Aqui se aplicaría persistencia tal ves con Firestore.
+Drawers donde se pueda incluir el crud, o configuración del usuario
+donde se incluya acceso a un form con datos personales o de alguna condición médica a tener en cuenta, como si sufre de ataques de pánico, si es alérgico a alguna medicación, diabético, cardíaco, etc.
+AsyncStorage para guardar preferencia de temas, pero también estoy imaginando ir guardando las últimas ubicaciones de tal forma que se pierde
+geolocalización se pueda enviar algo aproximado en el mensaje indicando esa condición, y tal vez esa información también persistirla o sincronizarla cuando se recupera señal, en especial estos últimos temas los tengo que analizar y ver su factibilidad.
+
+## Capturas de Pantallas
+
+- Pantalla Inicio: ![inicio.jpg](assets/capturas/inicio.jpg)
+- Botón ayuda: ![envio_msj.jpg](assets/capturas/envio_msj.jpg)
+- Mensaje Enviado (se ve post a una api también): ![app_mensajeria.jpg](assets/capturas/app_mensajeria.jpg)
+- Mensaje Recibido: ![msj_mapa.jpg](assets/capturas/msj_mapa.jpg)
+- Pantalla Explicación: ![explicacion.jpg](assets/capturas/explicacion.jpg)
+- Explicación pie: ![pie_explicacion.jpg](assets/capturas/pie_explicacion.jpg)
+- Maximo tamaño fuente: ![maximo_fuente.jpg](assets/capturas/maximo_fuente.jpg)
+- Tema normal: ![tema_normal.jpg](assets/capturas/tema_normal.jpg)
 
 This is an [Expo](https://expo.dev) project created with [`create-expo-app`](https://www.npmjs.com/package/create-expo-app).
 
@@ -16,41 +62,12 @@ This is an [Expo](https://expo.dev) project created with [`create-expo-app`](htt
    npx expo start
    ```
 
-In the output, you'll find options to open the app in a
+## Créditos
 
-- [development build](https://docs.expo.dev/develop/development-builds/introduction/)
-- [Android emulator](https://docs.expo.dev/workflow/android-studio-emulator/)
-- [iOS simulator](https://docs.expo.dev/workflow/ios-simulator/)
-- [Expo Go](https://expo.dev/go), a limited sandbox for trying out app development with Expo
+Curso: React Native — UTN
 
-You can start developing by editing the files inside the **app** directory. This project uses [file-based routing](https://docs.expo.dev/router/introduction).
+Autor: Ing. Marcelo Santillán
 
-## Get a fresh project
+Tecnologías: React Native, TypeScript y Expo.
 
-When you're ready, run:
-
-```bash
-npm run reset-project
-```
-
-This command will move the starter code to the **app-example** directory and create a blank **app** directory where you can start developing.
-
-### Other setup steps
-
-- To set up ESLint for linting, run `npx expo lint`, or follow our guide on ["Using ESLint and Prettier"](https://docs.expo.dev/guides/using-eslint/)
-- If you'd like to set up unit testing, follow our guide on ["Unit Testing with Jest"](https://docs.expo.dev/develop/unit-testing/)
-- Learn more about the TypeScript setup in this template in our guide on ["Using TypeScript"](https://docs.expo.dev/guides/typescript/)
-
-## Learn more
-
-To learn more about developing your project with Expo, look at the following resources:
-
-- [Expo documentation](https://docs.expo.dev/): Learn fundamentals, or go into advanced topics with our [guides](https://docs.expo.dev/guides).
-- [Learn Expo tutorial](https://docs.expo.dev/tutorial/introduction/): Follow a step-by-step tutorial where you'll create a project that runs on Android, iOS, and the web.
-
-## Join the community
-
-Join our community of developers creating universal apps.
-
-- [Expo on GitHub](https://github.com/expo/expo): View our open source platform and contribute.
-- [Discord community](https://chat.expo.dev): Chat with Expo users and ask questions.
+© 2026 — Todos los derechos reservados.
