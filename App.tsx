@@ -1,4 +1,5 @@
 import 'expo-router/entry';
+import { StatusBar } from 'expo-status-bar';
 import { ScrollView, StyleSheet, View } from 'react-native';
 import { Button, Text, useTheme } from 'react-native-paper';
 import { SafeAreaView } from 'react-native-safe-area-context';
@@ -8,37 +9,44 @@ import { AccessibilityProvider, useAccessibility } from './src/contexts/Accessib
 
 function ExampleScreen() {
   const theme = useTheme();
-  const { fontScale } = useAccessibility();
+  const { fontScale, themeMode } = useAccessibility();
+  const isHighContrast = themeMode === 'highContrast';
 
   return (
-    <SafeAreaView style={{ flex: 1, backgroundColor: theme.colors.background }}>
-      <ScrollView contentContainerStyle={styles.content}>
-        <AccessibilityToolbar />
-        <View style={styles.card}>
-          <Text
-            variant="headlineMedium"
-            style={{ color: theme.colors.onBackground, fontSize: 26 * fontScale, fontWeight: 'bold' }}
-          >
-            MePerdí
-          </Text>
-          <Text
-            style={{ color: theme.colors.onBackground, fontSize: 18 * fontScale, lineHeight: 28 * fontScale }}
-          >
-            Un botón de ayuda para avisar a tus personas de confianza.
-          </Text>
-          <Button
-            mode="contained"
-            icon="lifebuoy"
-            onPress={() => { }}
-            accessibilityLabel="Pedir ayuda"
-            style={styles.helpButton}
-            labelStyle={{ fontSize: 20 * fontScale, fontWeight: 'bold' }}
-          >
-            Pedir ayuda
-          </Button>
-        </View>
-      </ScrollView>
-    </SafeAreaView>
+    <>
+      <StatusBar
+        animated
+        style={isHighContrast ? 'light' : 'dark'}
+      />
+      <SafeAreaView style={{ flex: 1, backgroundColor: isHighContrast ? '#000000' : theme.colors.background }}>
+        <ScrollView contentContainerStyle={styles.content}>
+          <AccessibilityToolbar />
+          <View style={styles.card}>
+            <Text
+              variant="headlineMedium"
+              style={{ color: theme.colors.onBackground, fontSize: 26 * fontScale, fontWeight: 'bold' }}
+            >
+              MePerdí
+            </Text>
+            <Text
+              style={{ color: theme.colors.onBackground, fontSize: 18 * fontScale, lineHeight: 28 * fontScale }}
+            >
+              Un botón de ayuda para avisar a tus personas de confianza.
+            </Text>
+            <Button
+              mode="contained"
+              icon="lifebuoy"
+              onPress={() => { }}
+              accessibilityLabel="Pedir ayuda"
+              style={styles.helpButton}
+              labelStyle={{ fontSize: 20 * fontScale, fontWeight: 'bold' }}
+            >
+              Pedir ayuda
+            </Button>
+          </View>
+        </ScrollView>
+      </SafeAreaView>
+    </>
   );
 }
 
